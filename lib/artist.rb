@@ -1,47 +1,47 @@
 require 'pry'
 
-class Artist 
+class Artist
   extend Concerns::Findable
-  attr_accessor :name, :songs  
- 
-  
+  attr_accessor :name, :songs
+
+
   @@all = []
-  
+
   def initialize(name)
-    @name = name 
+    @name = name
     @songs = []
   end
-  
-  def self.all 
-    @@all 
+
+  def self.all
+    @@all
   end
-  
+
   def self.destroy_all
-    @@all.clear 
-  end 
-  
-  def save 
-    @@all << self 
-  end 
-  
+    @@all.clear
+  end
+
+  def save
+    @@all << self
+  end
+
   def self.create(name)
     artist = Artist.new(name)
-    artist.save 
+    artist.save
     artist
-  end 
-  
+  end
+
   def add_song(song)
     if !@songs.include?(song)
-      @songs << song 
-    end 
-    if !song.artist  
-      song.artist = self 
-    end 
-  end 
-  
+      @songs << song
+    end
+    if !song.artist
+      song.artist = self
+    end
+  end
+
   def genres 
     @songs.map do |song|
-      song.genre 
-    end.uniq 
-  end 
-end 
+      song.genre
+    end.uniq
+  end
+end
